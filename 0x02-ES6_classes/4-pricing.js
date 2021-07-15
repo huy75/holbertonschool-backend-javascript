@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Currency from './3-currency';
 
 export default class Pricing {
@@ -10,16 +11,22 @@ export default class Pricing {
     return this._amount;
   }
 
-  set amount(value) {
-    this._amount = value;
+  set amount(amount) {
+    if (typeof amount !== 'number') {
+      throw TypeError('amount must be a Number');
+    }
+    this._amount = amount;
   }
 
   get currency() {
     return this._currency;
   }
 
-  set currency(value) {
-    this._currency = value;
+  set currency(currency) {
+    if (!(currency instanceof Currency)) {
+      throw TypeError('currency must be a Currency');
+    }
+    this._currency = currency;
   }
 
   displayFullPrice() {
