@@ -3,7 +3,7 @@ export default function createIteratorObject(report) {
   for (const item of Object.values(report.allEmployees)) {
     allEmployees = [
       ...allEmployees,
-      ...item
+      ...item,
     ];
   }
   return allEmployees;
