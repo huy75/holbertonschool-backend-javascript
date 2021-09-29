@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 const port = 7865;
-app.listen(port, console.log(`API available on localhost port ${port}`));
+
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -17,13 +17,18 @@ app.get('/cart/:id([0-9]+)', (req, res) => {
 })
 
 app.get('/available_payments', (req, res) => {
-  res.json({
+  const obj = {
     payment_methods: {
       credit_cards: true,
-      paypal: false
-    }
-  })
+      paypal: false,
+    },
+  };
+  res.json(obj);
 });
-app.post('/login', (req, res) => res.end(`Welcome ${req.body.userName}`));
 
-module.exports = [app, port];
+app.post('/login', (req, res) => {
+  const username = req.body.userName;
+  res.end(`Welcome ${username}`);
+});
+
+app.listen(port, console.log(`API available on localhost port ${port}`));
